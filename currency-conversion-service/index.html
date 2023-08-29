@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Moneda</title>
+    <script>
+        function convertCurrency() {
+            var amount = parseFloat(window.prompt("Ingresa la cantidad:"));
+            var currency = window.prompt("Selecciona la moneda (pesos/dolares):").toLowerCase();
+            var convertedAmount;
+
+            if (currency === "pesos") {
+                convertedAmount = amount * 0.05; // Conversión de Pesos a Dólares
+                window.alert(amount + " Pesos equivalen a " + convertedAmount.toFixed(2) + " Dólares.");
+            } else if (currency === "dolares") {
+                convertedAmount = amount / 0.05; // Conversión de Dólares a Pesos
+                window.alert(amount + " Dólares equivalen a " + convertedAmount.toFixed(2) + " Pesos.");
+            } else {
+                window.alert("Opción inválida. Por favor, selecciona pesos o dólares.");
+            }
+        }
+    </script>
+</head>
+<body>
+<h1>Conversor de Moneda</h1>
+<button onclick="convertCurrency()">Convertir Moneda</button>
+</body>
+</html>
