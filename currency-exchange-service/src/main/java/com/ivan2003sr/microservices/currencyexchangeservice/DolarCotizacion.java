@@ -41,7 +41,7 @@ public String dolarValue(String symbol){
 
     } catch (Exception e){
 
-        System.out.println("ERROR, NO SE ENCONRÓ "+symbol);
+        System.out.println("ERROR, NO SE ENCONTRÓ "+symbol);
        // e.printStackTrace();
     }
 

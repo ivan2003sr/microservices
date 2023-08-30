@@ -36,4 +36,14 @@ public class CurrencyConversionServiceController {
         return new CurrencyConversion(currencyConversion.getId(),from,to,quantity,currencyConversion.getConversionMultiple(), quantity.multiply(currencyConversion.getConversionMultiple()),currencyConversion.getEnviroment()+" "+"feign");
 
     }
+
+    @GetMapping("/currency-conversion-feign-online/from/{from}/to/{to}/quantity/{quantity}")
+    public CurrencyConversion calculateCurrencyConversionFeignOnline(@PathVariable String from, @PathVariable String to, @PathVariable BigDecimal quantity){
+
+
+
+        CurrencyConversion currencyConversion = proxy.retrieveExchangeValueTrue(from,to);
+        return new CurrencyConversion(currencyConversion.getId(),from,to,quantity,currencyConversion.getConversionMultiple(), quantity.multiply(currencyConversion.getConversionMultiple()),currencyConversion.getEnviroment()+" "+"feign");
+
+    }
 }

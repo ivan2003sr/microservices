@@ -21,7 +21,23 @@ public class CurrencyExchangeController {
     @GetMapping("/currency-exchange/from/{from}/to/{to}")
     public CurrencyExchange retrieveExchangeValue(@PathVariable String from,@PathVariable String to){
 
-/*
+        String port = environment.getProperty("local.server.port");
+
+        CurrencyExchange currencyExchange = repository.findByFromAndTo(from, to);
+
+
+        if(currencyExchange==null){
+            throw new RuntimeException("Unable to Find data for " + from + " to "+to);
+        }
+        currencyExchange.setEnvironment(port);
+return currencyExchange;
+    }
+
+
+    @GetMapping("/currency-exchange-online/from/{from}/to/{to}")
+    public CurrencyExchange retrieveExchangeValueTrue(@PathVariable String from,@PathVariable String to){
+
+
         Double value;
 
 if (from.equals("USD") && to.equals("ARS")) {
@@ -38,17 +54,17 @@ if (from.equals("USD") && to.equals("ARS")) {
 
         CurrencyExchange currencyExchange = new CurrencyExchange(1000L,from,to, BigDecimal.valueOf(value));
 
-*/
+
         String port = environment.getProperty("local.server.port");
 
-        CurrencyExchange currencyExchange = repository.findByFromAndTo(from, to);
+
 
 
         if(currencyExchange==null){
             throw new RuntimeException("Unable to Find data for " + from + " to "+to);
         }
         currencyExchange.setEnvironment(port);
-return currencyExchange;
+        return currencyExchange;
     }
 
 }
