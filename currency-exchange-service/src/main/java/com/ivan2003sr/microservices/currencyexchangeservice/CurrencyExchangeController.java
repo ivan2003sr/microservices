@@ -30,6 +30,8 @@ public class CurrencyExchangeController {
 
         CurrencyExchange currencyExchange = repository.findByFromAndTo(from, to);
 
+        String host = environment.getProperty("HOSTNAME");
+        String verions = "v11";
 
         if(currencyExchange==null){
             throw new RuntimeException("Unable to Find data for " + from + " to "+to);
@@ -69,6 +71,8 @@ if (from.equals("USD") && to.equals("ARS")) {
             throw new RuntimeException("Unable to Find data for " + from + " to "+to);
         }
         currencyExchange.setEnvironment(port);
+        String host = environment.getProperty("HOSTNAME");
+        String verions = "v11";
         return currencyExchange;
     }
 
