@@ -8,7 +8,7 @@ metadata:
   name: currency-exchange
   namespace: default
 spec:
-  replicas: 2
+  replicas: 4
   selector:
     matchLabels:
       app: currency-exchange
@@ -23,9 +23,23 @@ spec:
         app: currency-exchange
     spec:
       containers:
-      - image: ivan200sr/currency-exchange-service:0.0.12-SNAPSHOT
+      - image: ivan200sr/currency-exchange-service:0.0.13-SNAPSHOT
         imagePullPolicy: IfNotPresent
         name: currency-exchange-service
+        readinessProbe:
+          httpGet:
+            port: 8000
+            path: /actuator/health/readiness
+        livenessProbe:
+          httpGet:
+            port: 8000
+            path: /actuator/health/liveness
+        startupProbe:
+          httpGet:
+            port: 8000
+            path: /actuator/health/liveness
+          failureThreshold: 60
+          periodSeconds: 5
       restartPolicy: Always
 ---
 apiVersion: v1

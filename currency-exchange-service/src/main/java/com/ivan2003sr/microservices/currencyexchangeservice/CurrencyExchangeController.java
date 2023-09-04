@@ -21,7 +21,7 @@ public class CurrencyExchangeController {
 
     @Autowired
     private Environment environment;
-    String version = "v12";
+    String version = "v13";
 
     @GetMapping("/currency-exchange/from/{from}/to/{to}")
     public CurrencyExchange retrieveExchangeValue(@PathVariable String from,@PathVariable String to){
