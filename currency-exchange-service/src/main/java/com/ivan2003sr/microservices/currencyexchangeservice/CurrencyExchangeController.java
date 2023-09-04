@@ -31,12 +31,12 @@ public class CurrencyExchangeController {
         CurrencyExchange currencyExchange = repository.findByFromAndTo(from, to);
 
         String host = environment.getProperty("HOSTNAME");
-        String verions = "v11";
+        String version = "v11";
 
         if(currencyExchange==null){
             throw new RuntimeException("Unable to Find data for " + from + " to "+to);
         }
-        currencyExchange.setEnvironment(port);
+        currencyExchange.setEnvironment(port + " " + version + " " + host);
 return currencyExchange;
     }
 
@@ -70,9 +70,12 @@ if (from.equals("USD") && to.equals("ARS")) {
         if(currencyExchange==null){
             throw new RuntimeException("Unable to Find data for " + from + " to "+to);
         }
-        currencyExchange.setEnvironment(port);
+
         String host = environment.getProperty("HOSTNAME");
-        String verions = "v11";
+        String version = "v11";
+
+        currencyExchange.setEnvironment(port + " " + version + " " + host);
+
         return currencyExchange;
     }
 
