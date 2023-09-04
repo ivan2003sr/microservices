@@ -21,6 +21,7 @@ public class CurrencyExchangeController {
 
     @Autowired
     private Environment environment;
+    String version = "v12";
 
     @GetMapping("/currency-exchange/from/{from}/to/{to}")
     public CurrencyExchange retrieveExchangeValue(@PathVariable String from,@PathVariable String to){
@@ -31,7 +32,7 @@ public class CurrencyExchangeController {
         CurrencyExchange currencyExchange = repository.findByFromAndTo(from, to);
 
         String host = environment.getProperty("HOSTNAME");
-        String version = "v11";
+
 
         if(currencyExchange==null){
             throw new RuntimeException("Unable to Find data for " + from + " to "+to);
@@ -72,7 +73,7 @@ if (from.equals("USD") && to.equals("ARS")) {
         }
 
         String host = environment.getProperty("HOSTNAME");
-        String version = "v11";
+
 
         currencyExchange.setEnvironment(port + " " + version + " " + host);
 
